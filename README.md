@@ -12,5 +12,4 @@ This program should be executed from the command line, in the following manner:
 
 ... (whatever else you'd like to include)
 
-##Access token: 92d3082e6cbc80e4b259ee584a1a76836b7696d9
 
