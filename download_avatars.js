@@ -6,7 +6,6 @@ token = token.GITHUB_TOKEN;
 
 
 console.log('Welcome to the GitHub Avatar Downloader!');
-console.log('THE TOKEN IS: ', token);
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -20,12 +19,9 @@ function getRepoContributors(repoOwner, repoName, cb) {
   //Callback function
   request(options, function(err, res, body) {
     var parsedBody = JSON.parse(body);
-    //console.log(parsedBody);
     for (var key in parsedBody){
       var currentURL = parsedBody[key].avatar_url;
       var currentFilePath = './avatars/' + parsedBody[key].login + '.jpg';
-      //console.log('avatarURL is: ', currentURL);
-      //console.log('current Filepath is: ', currentFilePath);
       cb(currentURL, currentFilePath);
     }
 
@@ -57,6 +53,9 @@ function downloadImageByURL(url, filePath) {
 var repoOwner = process.argv[2];
 var repoName = process.argv[3];
 
-getRepoContributors(repoOwner, repoName, downloadImageByURL);
+if ( repoOwner && repoName){
+  getRepoContributors(repoOwner, repoName, downloadImageByURL);
+} else {
+  console.log("Please enter the owner name and repo name in format: node download_avatars.js <owner> <repo>");
+}
 
-//downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg");
