@@ -40,10 +40,12 @@ function downloadImageByURL(url, filePath) {
          console.log('Response message: ', response.statusMessage);
          console.log('Reponse content type: ', response.headers['content-type']);
        })
+        //if data is recieving
        .on('data', function (){
-          console.log('Downloading image');   //if data is recieving
+          console.log('Downloading image');
        })
-       .on('end', function (){                              //when all data is finished downlaoding
+        //when all data is finished downlaoding
+       .on('end', function (){
           console.log("Finished downloading image");
        })
        .pipe(fs.createWriteStream(filePath));
