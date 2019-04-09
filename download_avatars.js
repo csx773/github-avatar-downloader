@@ -15,14 +15,20 @@ function getRepoContributors(repoOwner, repoName, cb) {
       'Authorization': 'Bearer ' + token
     }
   };
-
+  //Callback function
   request(options, function(err, res, body) {
+    //console.log('body is: \n', body);
+    var parsedBody = JSON.parse(body);
+    console.log(parsedBody);
+
     cb(err, body);
+
   });
 }
 
 
 getRepoContributors("jquery", "jquery", function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
+  //console.log("Errors:", err);
+  //console.log("Result:", result);
+  console.log('Inside function call');
 });
